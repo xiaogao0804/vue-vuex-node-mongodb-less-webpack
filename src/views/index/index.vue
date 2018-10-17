@@ -7,7 +7,7 @@
        <div class="index-main"  @click="handle()">
            <Tab></Tab>
            <keep-alive>    <!-- 缓存路由页面 -->
-             <router-view></router-view>
+             <router-view v-if="$route.meta.keepAlive"></router-view>
            </keep-alive>
         </div> 
       </el-main>
@@ -29,16 +29,8 @@
             }
         },
         created(){
-            // console.log('isIcon', this.isIcon)
-            // let storageNum = localStorage.getItem('isIcon')
-            // console.log('isIcon', storageNum)
-            // if ( storageNum && storageNum != ''){       //保存isIcon的点击状态，使其刷新或者返回时，还保持原状态
-            //     this.isIcon = storageNum
-            // }else{
-            //     this.isIcon = 1
-            // }
 
-            //index.vuethis.handle()
+            //this.handle()
             //console.log('created', this)
         },
         mounted(){
@@ -47,10 +39,10 @@
         methods:{
             handle:function(){
                   //this.$store.commit('CHANGE_TABNUM', 6)
-                  console.log('index',this.$store)
+                  //console.log('index',this.$store)
                   this.$store.dispatch('changeTabnum', this.isIcon)
-                  console.log('store',this.$store.state.isIcon.isIcon)
-                  console.log(this)
+                  //console.log('store',this.$store.state.isIcon.isIcon)
+                  //console.log(this)
             }
         },
         components: {
@@ -69,7 +61,7 @@
      }
      .el-main{
          .index-main{
-             //border:1px solid red;
+             
        }
      }
    }

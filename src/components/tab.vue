@@ -1,7 +1,7 @@
 <template>
          <el-row>
            <el-col :span="5" @click.native="tabSwitch($event)" data-num = '1'>
-             <router-link to="/index">
+             <router-link :to="path">
               <i class="fa icon" :class="[ isIcon == '1' ? 'fa-hourglass iconActive' : 'fa-hourglass-o' ]"></i>
               <span class="tab_name" :class="[ isIcon == '1' ? 'tab_nameActive' : '' ]">下厨房</span>
              </router-link>
@@ -37,17 +37,17 @@
 
 export default {
   name: 'Tab',
-
   data(){
     return {
-      isIcon: '1'
+      isIcon: '1',
+      path:''
     }
   },
   beforeCreate(){
      //console.log('beforeCreate')
   },
   created(){
-      //tab.vueconsole.log('isIcon', this.isIcon)
+      //console.log('isIcon', this.isIcon)
       let storageNum = localStorage.getItem('isIcon')
       //console.log('isIcon', storageNum)
       if ( storageNum && storageNum != ''){       //保存isIcon的点击状态，使其刷新或者返回时，还保持原状态
@@ -55,8 +55,7 @@ export default {
       }else{
           this.isIcon = 1
        }
-            
-            
+                   
     //console.log('tabstore',this.$store.state.isIcon.isIcon)
     //console.log('isIcon', this.isIcon)           //实例化之后才能打印出data里面的数据
   },
@@ -72,18 +71,24 @@ export default {
 
     }
   },
-  beforeUpdate(){
-    //console.log('beforeUpdate')
+  route:{
+    beforeRouterEnter(){
+      console.log('beforeRouterEnter')
+    },
+    beforeRouterUpdate(){
+      console.log('beforeRouterUpdate')
+    },
+    beforeRouteLeave(){
+      console.log('beforeRouteLeave')
+    },
   },
-  updated(){
-    //console.log('updated')
-  },
-  beforeDestroy(){
-    //console.log('beforeDestroy')
-  },
-  destroyed(){
-    //console.log('destroyed')
-  },
+  watch:{
+    $route(val){                             //监听路由的变化,动态设置路由，当从别的tabBar页面返回到‘下厨房’页面时，还是停留在原来的路由页面上
+      if ( val.matched.length > 1){
+        this.path = val.matched[1].path
+      }
+    }
+  }
  }
 </script>
 

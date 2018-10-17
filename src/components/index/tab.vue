@@ -77,10 +77,11 @@
           //点击切换
           let num = e.currentTarget.dataset.num
           this.isActive = num
-          localStorage.setItem('num', num)
+          localStorage.setItem('num', num)                //缓存tab切换的状态值
+
           //点击滑动
-           console.log('offsetLeft',e.currentTarget.offsetLeft)   
-           console.log(e.currentTarget.offsetParent.scrollLeft)         
+           //console.log('offsetLeft',e.currentTarget.offsetLeft)   
+           //console.log(e.currentTarget.offsetParent.scrollLeft)         
            let leftDis = e.currentTarget.offsetLeft   //点击元素距离左边框的距离
            let windowWidth = document.body.clientWidth
             if( leftDis - Math.abs(this.left) >= windowWidth/2 ){
@@ -90,32 +91,32 @@
                     if ( Math.abs(n) >= leftDis/1.8){
                         clearInterval(time)
                     }else{
-                        console.log('右滑动')
+                        //console.log('右滑动')
                          n--
                         that.left = n
                     }
                 },10)
             }
-            console.log('left', Math.abs(this.left))
-            console.log('offsetLeft - windowWidth', leftDis - Math.abs(this.left))
+            //console.log('left', Math.abs(this.left))
+            //console.log('offsetLeft - windowWidth', leftDis - Math.abs(this.left))
             if ( leftDis - Math.abs(this.left) < windowWidth/2 && this.left != 0 &&  this.left != 1){
                 let left1 = this.left
-                console.log('left1', left1)
+                //console.log('left1', left1)
                 let n = 0;
                 let time = setInterval(() => {
                     n++
-                    console.log(n)
-                    console.log('左滑动')
+                    //console.log(n)
+                    //console.log('左滑动')
                     that.left = left1 + n
                     if( n >= 50 || that.left > 0){
-                        console.log('清楚计时器')
+                        //console.log('清楚计时器')
                         clearInterval(time)
                     }
                 },10) 
             }
       }
-    }
-  };
+    },
+  }
 </script>
 <style lang="less">
     .el-tabs__item{
@@ -130,7 +131,6 @@
         font-size:0;
     }
     .wrap{
-        width: 100%;
         padding:0 0.5rem;
         overflow: scroll;
         .items{
@@ -143,7 +143,7 @@
                 font-size: 0.3rem;
                 cursor: pointer;       
             }
-            .router-link-active{
+            a{
                 color:#949292;
             }
             .itemActive{  

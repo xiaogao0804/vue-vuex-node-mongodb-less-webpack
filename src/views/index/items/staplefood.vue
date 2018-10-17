@@ -2,7 +2,7 @@
     <div>一人食</div>
 </template>
 
-<script>
+<script  type=”text/javascript”>
 export default {
     name: 'Staplefood'
 }

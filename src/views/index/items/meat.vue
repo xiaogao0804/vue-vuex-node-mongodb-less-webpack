@@ -2,7 +2,7 @@
     <div>肉类</div>
 </template>
 
-<script>
+<script type=”text/javascript”>
 export default {
     name: 'Meat'
 }

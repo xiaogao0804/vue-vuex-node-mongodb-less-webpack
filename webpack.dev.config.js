@@ -22,7 +22,7 @@ module.exports = merge(common, {
         inline: true,   //设置为true，当源文件改变时会自动刷新页面
         hot: false,
         compress: true,   //压缩
-        //historyApiFallback: true   //如果设置为true，所有的跳转将指向index.html
+        //historyApiFallback: true   //如果设置为true，所有的跳转将指向index.html， mode为history模式下
     },
     plugins:[
         //热更新

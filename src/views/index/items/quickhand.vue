@@ -2,7 +2,7 @@
     <div>快手</div>
 </template>
 
-<script>
+<script  type=”text/javascript”>
 export default {
     name: 'Quickhand'
 }

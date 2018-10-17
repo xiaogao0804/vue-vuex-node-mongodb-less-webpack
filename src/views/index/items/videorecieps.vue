@@ -2,7 +2,7 @@
     <div> 视频菜谱</div>
 </template>
 
-<script>
+<script  type=”text/javascript”>
 export default {
     name: 'Videorecieps'
 }

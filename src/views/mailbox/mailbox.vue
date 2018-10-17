@@ -41,7 +41,7 @@
      }
      .el-main{
          .index-main{
-             border:1px solid red;
+             
        }
      }
    }

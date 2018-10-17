@@ -2,7 +2,7 @@
     <div>蔬菜</div>
 </template>
 
-<script>
+<script  type=”text/javascript”>
 export default {
     name: 'Vegetable'
 }

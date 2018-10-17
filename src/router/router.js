@@ -25,7 +25,7 @@ export default [      //二级路由，对应app.vue
         //地址为空时，跳转到index.vue
         {
             path: '',
-            redirect: '/index'
+            redirect: '/index/items/recommend'
         },
         //首页下厨房页面
         {
@@ -35,47 +35,80 @@ export default [      //二级路由，对应app.vue
             children: [
                 {
                     path: "/index/items/recommend",
-                    component: recommend                  
+                    component: recommend,
+                    meta: {
+                        keepAlive: true   // 需要被缓存  false不需要被缓存
+                    }                  
                 },
                 {
                     path: "/index/items/baking",
-                    component: baking                  
+                    component: baking,
+                    meta: {
+                        keepAlive: true   // 需要被缓存 
+                    }                  
                 },
                 {
                     path: "/index/items/dessert",
-                    component: dessert                  
+                    component: dessert,
+                    meta: {
+                        keepAlive: true   // 需要被缓存  
+                    }                   
                 },
                 {
                     path: "/index/items/homedishs",
-                    component: homedishs                  
+                    component: homedishs,
+                    meta: {
+                        keepAlive: true   // 需要被缓存  
+                    }                   
                 },
                 {
                     path: "/index/items/meat",
-                    component: meat                  
+                    component: meat,
+                    meta: {
+                        keepAlive: true   // 需要被缓存  
+                    }                   
                 },
                 {
                     path: "/index/items/onefood",
-                    component: onefood                  
+                    component: onefood,
+                    meta: {
+                        keepAlive: true   // 需要被缓存  
+                    }                   
                 },
                 {
                     path: "/index/items/quickhand",
-                    component: quickhand                  
+                    component: quickhand,
+                    meta: {
+                        keepAlive: true   // 需要被缓存  
+                    }                   
                 },
                 {
                     path: "/index/items/soup",
-                    component: soup                  
+                    component: soup,
+                    meta: {
+                        keepAlive: true   // 需要被缓存  
+                    }                   
                 },
                 {
                     path: "/index/items/staplefood",
-                    component: staplefood                  
+                    component: staplefood,
+                    meta: {
+                        keepAlive: true   // 需要被缓存  
+                    }                   
                 },
                 {
                     path: "/index/items/vegetable",
-                    component: vegetable                  
+                    component: vegetable,
+                    meta: {
+                        keepAlive: true   // 需要被缓存  
+                    }                   
                 },
                 {
                     path: "/index/items/videorecieps",
-                    component: videorecieps                  
+                    component: videorecieps,
+                    meta: {
+                        keepAlive: true   // 需要被缓存  
+                    }                   
                 },
 
             ]

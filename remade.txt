@@ -1,3 +1,5 @@
+
+
 1. vue设置自定义属性： ：加属性名，可设置动态的，比如自定义属性id,且id是动态设置的数组内的属性
 
     :id = "item.id"
@@ -41,8 +43,43 @@
 4.获取点击元素的自定义数据
  e.currentTarget.dataset.num
 
-  e.currentTarget.offsetLeft        //获取点击元素距离左边距的距离
+ e.currentTarget.offsetLeft        //获取点击元素距离左边距的距离
 
 
 
-5.keep-alive 使路由或某个组件不刷新
+5.keep-alive 使路由或某个组件不刷新,保存原来的信息
+
+6.$router 和 $route 的区别
+
+$route为当前router跳转对象里面可以获取name、path、query、params等
+
+$router为VueRouter实例，想要导航到不同URL，则使用$router.push方法
+
+返回上一个history也是使用$router.go方法
+
+
+7.vue-router的两种模式：hash(带#) 和 history（不带#，需要后台配置，要不然刷新时会出现404）
+
+
+8.动态设置路由：
+
+<route-link :to="path"></route-link>
+
+监听路由的变化：
+
+watch:{
+    $route(val){                             //监听路由的变化
+      console.log(val)                      //val  ======== this.route       
+    }
+  }
+
+
+
+
+
+
+
+
+
+
+
