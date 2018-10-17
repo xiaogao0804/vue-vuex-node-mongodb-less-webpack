@@ -1,0 +1,48 @@
+1. vue设置自定义属性： ：加属性名，可设置动态的，比如自定义属性id,且id是动态设置的数组内的属性
+
+    :id = "item.id"
+
+   读取自定义属性： event.target.getAttribute('id')
+
+
+
+   vue设置自定义数据， 用data-*
+
+   读取自定义数据： this.$refs.liId.dataset.id
+
+        
+<li class="item" :id="item.id" v-for="item in items" :key="item.index" ref="liId"  data-id="wwww"  @click="navTab('$event')">{{item.tabName}}</li>
+
+
+
+2.tab切换： 判断数字和自定义的数字是否一致
+判断绑定哪个class的写法
+
+:class="[ isActive == 0 ? 'itemActive' : '']" data-num="0"
+
+
+
+<li class="item" @click="navTab($event)"  :class="[ isActive == 2 ? 'itemActive' : '']" data-num="2">
+    <router-link to="/" :class="[ isActive == 2 ? 'txtActive' : '']">烘焙</router-link>
+</li>
+
+      navTab(e){
+          let num = e.currentTarget.dataset.num         //获取点击元素的自定义数据
+          console.log(e.currentTarget, num)
+          this.isActive = num
+      }
+
+
+3.设置动态样式
+
+   :style="{left: left + 'px'}"
+
+
+4.获取点击元素的自定义数据
+ e.currentTarget.dataset.num
+
+  e.currentTarget.offsetLeft        //获取点击元素距离左边距的距离
+
+
+
+5.keep-alive 使路由或某个组件不刷新
