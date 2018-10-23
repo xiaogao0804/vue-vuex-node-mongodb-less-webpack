@@ -7,7 +7,7 @@
        <div class="index-main"  @click="handle()">
            <Tab></Tab>
            <keep-alive>    <!-- 缓存路由页面 -->
-             <router-view v-if="$route.meta.keepAlive"></router-view>
+             <router-view :key="$route.path" v-if="$route.meta.keepAlive"></router-view>
            </keep-alive>
         </div> 
       </el-main>
@@ -29,12 +29,7 @@
             }
         },
         created(){
-
             //this.handle()
-            //console.log('created', this)
-        },
-        mounted(){
-            //console.log('路由', this.$router)
         },
         methods:{
             handle:function(){

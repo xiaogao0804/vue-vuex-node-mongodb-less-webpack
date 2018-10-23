@@ -47,9 +47,7 @@ export default {
      //console.log('beforeCreate')
   },
   created(){
-      //console.log('isIcon', this.isIcon)
       let storageNum = localStorage.getItem('isIcon')
-      //console.log('isIcon', storageNum)
       if ( storageNum && storageNum != ''){       //保存isIcon的点击状态，使其刷新或者返回时，还保持原状态
           this.isIcon = storageNum
       }else{
