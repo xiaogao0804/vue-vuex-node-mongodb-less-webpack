@@ -10,11 +10,24 @@
         <el-row>
             <Broadcast :items = "meal" :name = "mealName" :pagination = true></Broadcast>
         </el-row>
+        <el-row>
+            <router-link to="www.baidu.com">
+                <img src="../../../assets/see.png" alt="" class="member">
+            </router-link>
+        </el-row>
+        <el-row>
+            <Classification :classificationName = "classification.name" :items = "classification.classificationImg"></Classification>
+        </el-row>
     </div>
 </template>
 
 <script  type=”text/javascript”>
+import Vue from 'vue'
 import Broadcast from '../../../components/index/broadcast'
+import Classification from '../../../components/index/classification'
+import axios from  'axios'
+
+Vue.prototype.$http = axios
 
 export default {
     name: 'Recommend',
@@ -36,10 +49,30 @@ export default {
                 {'id': 1, img: 'src/assets/rec2.jpg'},
                 {'id': 2, img: 'src/assets/rec3.jpg'},
             ],
+            classification: {
+                name: '生鲜料理包',
+                classificationImg:[
+                    {id: 0, img: 'src/assets/classification1.jpg', imgTxt: '刀板香脆笋豆腐煲，徽菜特色腊味'},
+                    {id: 1, img: 'src/assets/classification2.jpg', imgTxt: '刀板香脆笋豆腐煲，徽菜特色腊味'},
+                    {id: 2, img: 'src/assets/classification3.jpg', imgTxt: '刀板香脆笋豆腐煲，徽菜特色腊味'},
+                    {id: 3, img: 'src/assets/classification4.jpg', imgTxt: '刀板香脆笋豆腐煲，徽菜特色腊味'},
+                    {id: 4, img: 'src/assets/classification5.jpg', imgTxt: '刀板香脆笋豆腐煲，徽菜特色腊味'},
+                    {id: 5, img: 'src/assets/classification6.jpg', imgTxt: '刀板香脆笋豆腐煲，徽菜特色腊味'},
+                    {id: 6, img: 'src/assets/classification7.jpg', imgTxt: '刀板香脆笋豆腐煲，徽菜特色腊味'},
+                    {id: 7, img: 'src/assets/classification8.jpg', imgTxt: '刀板香脆笋豆腐煲，徽菜特色腊味'}
+                ],
+            }
         }
     },
+    mounted(){
+        console.log('http',this.$http)
+        this.$http.get('http://10.4.110.19:3000/classification').then((res) => {
+            console.log('获取到的数据', res)
+        })
+    },
     components: {
-        Broadcast
+        Broadcast,
+        Classification
     }
 }
 </script>
@@ -56,6 +89,10 @@ export default {
                 width: 100%;
                 height:2.4rem;
             }
+        }
+        .member{
+            width: 100%;
+             height:2.5rem;
         }
     }
 
