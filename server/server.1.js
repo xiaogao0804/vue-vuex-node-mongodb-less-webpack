@@ -1,3 +1,4 @@
+/**暂时未用到 */
 var express = require('express');
 var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
@@ -22,6 +23,8 @@ mongoose.connection.on('connected', function(){
     //模型
     var Name = mongoose.model('Name', schema)
 
+    //console.log('name', Name)
+
     //实例化模型
     var person1 = new Name({ 
         name: 'one',
@@ -39,17 +42,17 @@ mongoose.connection.on('connected', function(){
         number: '222'
     });
 
-     //插入
+    //插入
     person1.save();
     person2.save();
     person3.save();
 
 //路由设置并从数据库查找数据
 app.get('/classification', function(req, res){
-   // console.log('我接受到了get请求');
+    console.log('我接受到了get请求');
     //查找
     Name.find(function(err, classification){           //model可以操作数据库，所以是Model  contactList是返回的所有文档
-        console.log("数据库",classification)
+        //console.log("数据库",classification)
         var classification = classification
         var obj = {
             code: "200",
@@ -137,6 +140,6 @@ app.all('/classification', function(req, res, next) {
     next();
 });
 
-app.listen(3000);
+app.listen(30000);
 console.log('server running on port 3000');
 

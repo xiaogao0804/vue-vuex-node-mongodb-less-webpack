@@ -1,3 +1,4 @@
+/**暂时未用到 */
 var app = require('express')();
 process.app = app;//方便在其他地方使用app获取配置
 
