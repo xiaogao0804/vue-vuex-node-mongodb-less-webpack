@@ -24,8 +24,8 @@ export default {
     }
   },
   mounted(){
-    let hgt = document.documentElement.clientHeight + 'px' || document.body.clientHeight + 'px';
-    this.$refs.app.style.height = hgt;
+    // let hgt = document.documentElement.clientHeight + 'px' || document.body.clientHeight + 'px';
+    // this.$refs.app.style.height = hgt;
   },
   components: {
     Tab

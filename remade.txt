@@ -113,6 +113,47 @@ watch: {
 node服务器和前端服务器域名，接口一样时，都启动的话，接口地址会出现 cannot get /XXX 的错误，解决办法：node的服务器和前端服务器设置不同的域名
 
 
+10.25
+
+1.header头三件套
+
+header(‘Access-Control-Allow-Origin :’.$origin); //允许的域名（ * 所有域） 
+header(‘Access-Control-Allow-Methods : POST’); //允许的方法 
+header(‘Access-Control-Allow-Headers : x-requested-with , content-type’); //服务器支持的头信息
+
+
+2.请求来的数据是异步的，渲染是同步的，所以先判断是不是有数据了，再进行渲染，否则报如下错误
+
+[Vue warn]: Error in render: "TypeError: Cannot read property 'name' of undefined"
+
+解决方法：加上判断条件
+
+<el-row v-if="classification.length > 0">   
+    <Classification :classificationName = "classification[0].name" :items = "classification[0].classificationImg"></Classification>
+</el-row>
+
+
+
+3.Vue 实现响应式并不是数据发生变化之后 DOM 立即变化，而是按一定的策略进行 DOM 的更新。
+$nextTick 是在下次 DOM 更新循环结束之后执行延迟回调，在修改数据之后使用 $nextTick，则可以在回调中获取更新后的 DOM
+
+
+
+4.slot
+
+父组件引用子组件时，一般子组件的开闭标签中间是不加内容的（<Children></Children>），如果加了<Children> <span>替换子组件中对应的slot</span> </Children>）,那么里面的内容元素就会替换子组件中对应的slot，如果没有内容，就会显示子组件中slot的内容
+
+
+5.v-for不能用于根元素（root element）。因为v-for是个循环，它返回更多的元素。导致无法渲染
+
+  嵌套循环：子循环是父循环数据中的数据‘
+
+ <el-row class="hang" :key="index" v-for="(Pitem, index) in Pitems">
+
+    <router-link tag="li" to="" :key="index" v-for="(item,index) in Pitem.classificationImg"></router-link>
+
+</el-row> 
+
 
 
 

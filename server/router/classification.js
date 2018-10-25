@@ -11,7 +11,7 @@ router.get('/classification', function(req, res, next){
         //console.log("数据库",classification)
         var classification = classification
         var obj = {
-            code: "200",
+            code: 200,
             classification: classification,
             message: "获取数据成功！"
         }

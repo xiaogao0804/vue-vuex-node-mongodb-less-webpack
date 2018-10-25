@@ -15,8 +15,12 @@
                 <img src="../../../assets/see.png" alt="" class="member">
             </router-link>
         </el-row>
-        <el-row>
-            <Classification :classificationName = "classification.name" :items = "classification.classificationImg"></Classification>
+        <!-- 请求来的数据是异步的，渲染是同步的，所以先判断是不是有数据了，再进行渲染，否则报错undefined -->
+        <el-row v-if="classification.length > 0">   
+            <Classification :Pitems = "classification"></Classification>
+        </el-row>
+        <el-row>   
+            <img style="width:100%;" src="../../../assets/classification.jpg" alt="">
         </el-row>
     </div>
 </template>
@@ -49,25 +53,24 @@ export default {
                 {'id': 1, img: 'src/assets/rec2.jpg'},
                 {'id': 2, img: 'src/assets/rec3.jpg'},
             ],
-            classification: {
-                name: '生鲜料理包',
-                classificationImg:[
-                    {id: 0, img: 'src/assets/classification1.jpg', imgTxt: '刀板香脆笋豆腐煲，徽菜特色腊味'},
-                    {id: 1, img: 'src/assets/classification2.jpg', imgTxt: '刀板香脆笋豆腐煲，徽菜特色腊味'},
-                    {id: 2, img: 'src/assets/classification3.jpg', imgTxt: '刀板香脆笋豆腐煲，徽菜特色腊味'},
-                    {id: 3, img: 'src/assets/classification4.jpg', imgTxt: '刀板香脆笋豆腐煲，徽菜特色腊味'},
-                    {id: 4, img: 'src/assets/classification5.jpg', imgTxt: '刀板香脆笋豆腐煲，徽菜特色腊味'},
-                    {id: 5, img: 'src/assets/classification6.jpg', imgTxt: '刀板香脆笋豆腐煲，徽菜特色腊味'},
-                    {id: 6, img: 'src/assets/classification7.jpg', imgTxt: '刀板香脆笋豆腐煲，徽菜特色腊味'},
-                    {id: 7, img: 'src/assets/classification8.jpg', imgTxt: '刀板香脆笋豆腐煲，徽菜特色腊味'}
-                ],
-            }
+            classification: []
         }
     },
     mounted(){
-        console.log('http',this.$http)
-        this.$http.get('http://10.4.110.19:3000/classification').then((res) => {
-            console.log('获取到的数据', res)
+        this.$nextTick( () => {                  //$nextTick  数据变化之后Dom更新完了执行里面的回调函数
+            this.$http.get('http://10.4.110.19:3000/classification').then((res) => {
+                if( res.status == 200 ){
+                    console.log('获取到的数据', res.data)
+                    this.classification = res.data.classification
+                    console.log(this.classification[0].name)
+                }else{
+                    this.$message({
+                        showClose: true,
+                        message: '服务器开小差了，请稍后重试！',
+                        type: 'error'
+                    });
+                }
+            })           
         })
     },
     components: {
