@@ -18,5 +18,4 @@ router.get('/classification', function(req, res, next){
         res.json(obj)
     })
 })
-
 module.exports = router
