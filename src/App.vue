@@ -24,8 +24,8 @@ export default {
     }
   },
   mounted(){
-    // let hgt = document.documentElement.clientHeight + 'px' || document.body.clientHeight + 'px';
-    // this.$refs.app.style.height = hgt;
+    let hgt = document.documentElement.clientHeight + 'px' || document.body.clientHeight + 'px';
+    this.$refs.app.style.height = hgt;
   },
   components: {
     Tab
@@ -35,6 +35,9 @@ export default {
 </script>
 
 <style lang="less" scoped>
+    #app{
+      overflow:scroll;
+    }
    .el-container{
      width: 100%;
      height: 100%;
@@ -45,6 +48,14 @@ export default {
       .el-footer{
         padding:0;
         cursor: pointer;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background: #fff;
+        .el-row{
+          padding-top:0.12rem;
+        }
       }
    }
 </style>

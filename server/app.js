@@ -25,7 +25,6 @@ app.use('/',classificationRouter);                  //注册路由
 //     res.header('Access-Control-Allow-Headers', 'Content-Type');
 //     next();
 // });
-
 app.listen(3000);
 console.log('server running on port 3000');
 

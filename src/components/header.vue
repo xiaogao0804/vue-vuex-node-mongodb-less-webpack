@@ -2,12 +2,11 @@
     <div class="header">
         <el-row  :gutter="0">
             <el-col :span="3" v-if="leftFa">
-                <i  class="fa" :class="[ isIcon == 1 ? 'left-fa-icon1' : 'left-fa-icon2', leftFa ]"></i>
+                <i class="fa" :class="[ isIcon == 1 ? 'left-fa-icon1' : 'left-fa-icon2', leftFa ]"></i>
                 <span class="geolocation" v-if = " isIcon == '2'">北京市</span>
             </el-col>
             <el-col :span="17" class="ipt_wrap" :class="[ leftFa ? '' : 'ipt-left']">
                 <el-input class="seatch_ipt" v-model="seatchTxt" :placeholder="[ iptHolder ]" clearable >
-
                 </el-input>
             </el-col>
             <el-col :span="4">
@@ -27,7 +26,6 @@
                 seatchTxt: '',
            }
        }
-       
    }
     
 </script>

@@ -83,7 +83,7 @@ export default {
     .recommend_wrap{
         width: 95%;
         border: 1px solid red;
-        margin: 0.2rem auto;
+        margin: 0.7rem auto;
         .el-row{
             margin-bottom:0.32rem;
         }

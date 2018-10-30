@@ -53,11 +53,41 @@
       };
     },
     created() {
-        let storageNum = localStorage.getItem('num')
-        if ( storageNum && storageNum != ''){       //保存isActive的点击状态，使其刷新或者返回时，还保持原状态
-            this.isActive = storageNum
-        }else{
-            this.isActive = 0
+        let pathTab = this.$route.path
+         switch (pathTab){
+          case ' /index/items/recommend':
+            this.isActive = 0;
+            break;
+          case '/index/items/homedishs':
+            this.isActive = 1;
+            break;
+          case '/index/items/baking':
+            this.isActive = 2;
+            break;
+          case '/index/items/meat':
+            this.isActive = 3;
+            break;
+          case '/index/items/vegetable':
+            this.isActive = 4;
+            break; 
+          case '/index/items/quickhand':
+            this.isActive = 5;
+            break;
+          case '/index/items/dessert':
+            this.isActive = 6;
+            break;
+          case '/index/items/soup':
+            this.isActive = 7;
+            break;
+          case '/index/items/staplefood':
+            this.isActive = 8;
+            break;
+          case '/index/items/onefood':
+            this.isActive = 9;
+            break;
+          case '/index/items/videorecieps':
+            this.isActive = 10;
+            break;
         }
     },
     methods: {
@@ -69,7 +99,6 @@
           //点击切换
           let num = e.currentTarget.dataset.num
           this.isActive = num
-          localStorage.setItem('num', num)                //缓存tab切换的状态值
 
           //点击滑动       
            let leftDis = e.currentTarget.offsetLeft   //点击元素距离左边框的距离
@@ -101,9 +130,50 @@
             }
       }
     },
+    watch:{
+      $route(val){                             
+        let pathText = val.matched[1].path
+        switch (pathText){
+          case ' /index/items/recommend':
+            this.isActive = 0;
+            break;
+          case '/index/items/homedishs':
+            this.isActive = 1;
+            break;
+          case '/index/items/baking':
+            this.isActive = 2;
+            break;
+          case '/index/items/meat':
+            this.isActive = 3;
+            break;
+          case '/index/items/vegetable':
+            this.isActive = 4;
+            break; 
+          case '/index/items/quickhand':
+            this.isActive = 5;
+            break;
+          case '/index/items/dessert':
+            this.isActive = 6;
+            break;
+          case '/index/items/soup':
+            this.isActive = 7;
+            break;
+          case '/index/items/staplefood':
+            this.isActive = 8;
+            break;
+          case '/index/items/onefood':
+            this.isActive = 9;
+            break;
+          case '/index/items/videorecieps':
+            this.isActive = 10;
+            break;
+        }
+      }
+    }
   }
 </script>
 <style lang="less">
+
     .el-tabs__item{
         padding: 0 10px;
     }
@@ -117,10 +187,15 @@
     }
     .box{
         width:100%;
-        position:relative;
+        padding: 10px 0;
+        background: #fff;
+        position:fixed;
+        top:50px;
+        left:0;
         display: flex;
         flex-direction: row;
         justify-content:space-between;
+        z-index: 999;
         .wrap{
             //padding:0 0.5rem;
             width: 85%;

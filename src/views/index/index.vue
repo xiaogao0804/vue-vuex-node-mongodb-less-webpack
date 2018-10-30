@@ -1,6 +1,6 @@
 <template>
-     <el-container>
-      <el-header>
+    <el-container>
+      <el-header class="contain-header">
         <Header :isIcon = 'isIcon' :leftFa = 'leftFa' :rightFa = 'rightFa' :iptHolder = 'iptHolder'></Header>
       </el-header>
       <el-main>
@@ -51,12 +51,20 @@
    .el-container{
      width: 100%;
      height: 100%;
-     .el-header, .el-main{
-       padding:0;
+     .el-header{
+        width: 100%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 999;
+        background: #fff;
+        padding: 0;
      }
      .el-main{
-         .index-main{
-             
+       padding:0;
+       margin-top: 30px;
+        .index-main{
+           position:relative;
        }
      }
    }
