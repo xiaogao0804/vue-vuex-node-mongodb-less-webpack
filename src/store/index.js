@@ -1,16 +1,16 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import mutations from './mutations.js'
-import actions from './action.js'
+import getters from './getters.js'
+import searchHeader from './modules/searchState.js'
 
 Vue.use(Vuex)
 
-const state = {
-    isIcon: '',     //各tab页面的数字
-}
-
-export default new Vuex.Store({
-    state,
-    actions,
-    mutations
+const store = new Vuex.Store({
+    modules:{
+        searchHeader
+    },   
+    getters
 })
+
+
+export default store

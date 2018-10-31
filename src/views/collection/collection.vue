@@ -12,6 +12,7 @@
 </template>
 
 <script type="text/javascript">
+    import { mapMutations } from 'vuex'
     import Header from '../../components/header'
 
     export default {
@@ -22,9 +23,20 @@
                 iptHolder: '搜索我的收藏'
             }
         },
-        mounted(){
-            //console.log('路由', this.$router)
-        },       
+        created(){
+            //设置mutationd负荷header数据
+            let searchHeader = {
+                isIcon: this.isIcon,
+                iptHolder: this.iptHolder
+            }
+            this.changeIsicon(searchHeader)
+        },
+        methods:{
+            //mutations辅助函数改变searchState中的数据
+            ...mapMutations({
+                changeIsicon: 'CHANGE_ISICON'
+            })
+        },      
         components: {
             Header
         }

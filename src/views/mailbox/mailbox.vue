@@ -12,6 +12,7 @@
 </template>
 
 <script type="text/javascript">
+    import { mapMutations } from 'vuex'
     import Header from '../../components/header'
 
     export default {
@@ -23,9 +24,22 @@
                 iptHolder: '搜索商品'
             }
         },
+        created(){
+            this.changeIsicon(this.isIcon)
+        },
         mounted(){
             //console.log('路由', this.$router)
-        },       
+        }, 
+        methods: {
+            //修改store中的isIcon
+            // changeIsicon(){
+            //     this.$store.commit('CHANGE_ISICON', this.isIcon)     //===  this.$store.dispatch('changeIsicon', this.isIcon)             
+            // }
+
+            ...mapMutations({
+                changeIsicon: 'CHANGE_ISICON'
+            })
+        },     
         components: {
             Header
         }

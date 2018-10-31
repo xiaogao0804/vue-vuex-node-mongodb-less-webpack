@@ -5,7 +5,7 @@
         <router-view></router-view>
       </el-main>
       <el-footer style="height:45px;">
-          <Tab></Tab>
+        <Tab></Tab>
       </el-footer>
     </el-container>
   </div>
@@ -20,17 +20,16 @@ export default {
 
   data(){
     return {
-      
     }
   },
   mounted(){
+    //获取屏幕高度
     let hgt = document.documentElement.clientHeight + 'px' || document.body.clientHeight + 'px';
     this.$refs.app.style.height = hgt;
   },
   components: {
     Tab
-  }
- 
+  },
  }
 </script>
 

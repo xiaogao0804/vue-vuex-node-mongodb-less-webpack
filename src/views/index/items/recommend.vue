@@ -37,32 +37,35 @@ export default {
     name: 'Recommend',
     data(){
         return {
-            menuName: 'menu',
-            mealName: 'meal',
-            tabBar: true,
-            pagination: true,
-            menu:[
+            menuName: 'menu',      //区分轮播图1
+            mealName: 'meal',      //区分轮播图2
+            tabBar: true,          //滚动条是否显示
+            pagination: true,      //分页是否显示
+            menu:[                 //轮播图一图片
                 {'id': 0, img: 'src/assets/rec1.jpg'},
                 {'id': 1, img: 'src/assets/rec2.jpg'},
                 {'id': 2, img: 'src/assets/rec3.jpg'},
                 {'id': 3, img: 'src/assets/rec4.jpg'},
                 {'id': 4, img: 'src/assets/rec5.jpg'}
             ],
-            meal:[
+            meal:[                  //轮播图二图片
                 {'id': 0, img: 'src/assets/rec1.jpg'},
                 {'id': 1, img: 'src/assets/rec2.jpg'},
                 {'id': 2, img: 'src/assets/rec3.jpg'},
             ],
-            classification: []
+            classification: []       //各楼层数据
         }
     },
+    /**
+     * 获取各楼层数据
+     */
     mounted(){
         this.$nextTick( () => {                  //$nextTick  数据变化之后Dom更新完了执行里面的回调函数
             this.$http.get('http://10.4.110.19:3000/classification').then((res) => {
                 if( res.status == 200 ){
-                    console.log('获取到的数据', res.data)
+                    //console.log('获取到的数据', res.data)
                     this.classification = res.data.classification
-                    console.log(this.classification[0].name)
+                    //console.log(this.classification[0].name)
                 }else{
                     this.$message({
                         showClose: true,

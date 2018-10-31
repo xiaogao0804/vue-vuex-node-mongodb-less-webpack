@@ -1,5 +1,5 @@
 <template>
-  <el-row>
+  <el-row v-if= "footerIsShow">
     <el-col :span="5" @click.native="tabSwitch($event)" data-num = '1'>
       <router-link :to="path">
         <i class="fa icon" :class="[ isIcon == '1' ? 'fa-hourglass iconActive' : 'fa-hourglass-o' ]"></i>
@@ -38,47 +38,62 @@
     name: 'Tab',
     data(){
       return {
-        isIcon: 1,
-        path:''
+        isIcon: 1,     //footer各个导航图标
+        path: '',       //index页面下二级页面的路径
+        footerIsShow: true     //footer是否显示   
       }
     },
     created(){
 
     },
+    
     methods: {
+      //获取所点击的元素的num值
       tabSwitch: function(event){
         let num = event.currentTarget.dataset.num;
         this.isIcon = num
         if (this.isIcon == 1 ){
           this.path = localStorage.getItem('path')
-          console.log('ww', this.path)
         }
       }
     },
+    /**
+     * 监听路由的变化,动态设置路由，当从别的tabBar页面返回到‘下厨房’页面时，还是停留在原来的路由页面上
+     */ 
     watch:{
-      $route(val){                             //监听路由的变化,动态设置路由，当从别的tabBar页面返回到‘下厨房’页面时，还是停留在原来的路由页面上
-        let pathTxt = val.matched[0].path
-        switch (pathTxt){
-          case '/index':
-            this.isIcon = 1;
-            break;
-          case '/market':
-            this.isIcon = 2;
-            break;
-          case '/collection':
-            this.isIcon = 3;
-            break;
-          case '/mailbox':
-            this.isIcon = 4;
-            break;
-          case '/user':
-            this.isIcon = 5;
-            break;
+      $route(to, from){                           
+        if (to.matched.length > 0){
+          let pathTxt = to.matched[0].path
+          switch (pathTxt){
+            case '/index':
+              this.isIcon = 1;
+              break;
+            case '/market':
+              this.isIcon = 2;
+              break;
+            case '/collection':
+              this.isIcon = 3;
+              break;
+            case '/mailbox':
+              this.isIcon = 4;
+              break;
+            case '/user':
+              this.isIcon = 5;
+              break;
+          }
         }
-        console.log('isIcon', this.isIcon)
-        if ( this.isIcon == 1 && val.matched.length > 1){
-          this.path = val.matched[1].path
+    
+        if ( this.isIcon == 1 && to.matched.length > 1){
+          this.path = to.matched[1].path
           localStorage.setItem('path',this.path)
+        }
+        let fromPath = from.path
+        let toPath = to.path
+        if ( toPath.indexOf('/search') > -1){    //搜索页面不显示footer
+          this.footerIsShow = false
+        }
+        if ( fromPath.indexOf('/search') > -1){      //非搜索页面显示footer
+          this.footerIsShow = true
         }
       }
     }

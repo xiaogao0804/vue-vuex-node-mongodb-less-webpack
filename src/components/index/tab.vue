@@ -130,8 +130,11 @@
             }
       }
     },
+    /**
+     * 检测二级页面路由的变化，判断isActive 的值，显示对应的样式
+     */
     watch:{
-      $route(val){                             
+      $route(val){                              
         let pathText = val.matched[1].path
         switch (pathText){
           case ' /index/items/recommend':

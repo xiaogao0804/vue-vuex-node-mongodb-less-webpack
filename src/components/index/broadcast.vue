@@ -23,6 +23,9 @@ export default {
 
         }
     },
+    /** 
+     * 轮播
+    */
     mounted(){
         var mySwiper = new Swiper('.menu', {                 //通过父组件传过来的不同的类名来显示同一组件的不同功能
           autoplay:true,

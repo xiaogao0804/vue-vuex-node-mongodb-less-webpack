@@ -6,6 +6,7 @@ const market = r => require.ensure([], () => r(require('../views/market/market.v
 const collection = r => require.ensure([], () => r(require('../views/collection/collection.vue')), 'collection')
 const mailbox = r => require.ensure([], () => r(require('../views/mailbox/mailbox.vue')), 'mailbox')
 const user = r => require.ensure([], () => r(require('../views/user/user.vue')), 'user')
+const search = r => require.ensure([], () => r(require('../views/search/search.vue')), 'search')
 
 //定义二级路由
 const  recommend= r => require.ensure([], () => r(require('../views/index/items/recommend')), 'recommend')
@@ -133,4 +134,9 @@ export default [      //二级路由，对应app.vue
             path: '/user',
             component: user
         },
+        //搜索页面
+        {
+            path: '/search',
+            component: search
+        }
     ]

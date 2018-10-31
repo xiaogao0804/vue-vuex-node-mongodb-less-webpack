@@ -1,10 +1,10 @@
 <template>
     <el-container>
       <el-header class="contain-header">
-        <Header :isIcon = 'isIcon' :leftFa = 'leftFa' :rightFa = 'rightFa' :iptHolder = 'iptHolder'></Header>
+        <Header :isIcon = 'isIcon' :leftFa = 'leftFa' :rightFa = 'rightFa' :iptHolder = 'iptHolder' :leftSpan = "leftSpan" :iptSpan = "iptSpan" :rightSpan = "rightSpan"></Header>
       </el-header>
       <el-main>
-       <div class="index-main"  @click="handle()">
+       <div class="index-main">
            <Tab></Tab>
            <keep-alive>    <!-- 缓存路由页面 -->
              <router-view :key="$route.path" v-if="$route.meta.keepAlive"></router-view>
@@ -15,6 +15,7 @@
 </template>
 
 <script type="text/javascript">
+    import { mapMutations } from 'vuex'
     import Header from '../../components/header'
     import Tab from '../../components/index/tab'
 
@@ -25,20 +26,31 @@
                 isIcon: '1',
                 leftFa: 'fa-plus',
                 rightFa: 'fa-shopping-basket',
-                iptHolder: '请输入搜索内容'
+                iptHolder: '请输入搜索内容',
+                leftSpan:3,
+                iptSpan: 17,
+                rightSpan: 4
             }
         },
         created(){
-            //this.handle()
+            //设置mutationd负荷header数据
+            let searchHeader = {
+                isIcon: this.isIcon,
+                iptHolder: this.iptHolder
+            }
+            this.changeIsicon(searchHeader)
         },
         methods:{
-            handle:function(){
-                  //this.$store.commit('CHANGE_TABNUM', 6)
-                  //console.log('index',this.$store)
-                  this.$store.dispatch('changeTabnum', this.isIcon)
-                  //console.log('store',this.$store.state.isIcon.isIcon)
-                  //console.log(this)
-            }
+            //mutations辅助函数改变searchState中的数据
+            //修改store中的isIcon写法一
+            // changeIsicon(){
+            //     console.log('store', this.$store)
+            //     this.$store.commit('CHANGE_ISICON', this.isIcon)      // === this.$store.dispatch('changeIsicon', this.isIcon) 
+            // },
+            //写法二，借助于辅助函数
+            ...mapMutations({
+                changeIsicon: 'CHANGE_ISICON'
+            })
         },
         components: {
             Header,
