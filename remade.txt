@@ -154,6 +154,36 @@ $nextTick 是在下次 DOM 更新循环结束之后执行延迟回调，在修�
 
 </el-row> 
 
+10.31
+
+在state中定义共享的数据 ----- 在mutations中定义如何修改共享的数据 ----- 在对应的组件的methods中提交 mutations方法并且带上要改的数据（负荷），在合适的位置触发这个方法 ------ 在获取共享数据的组件的computed中获取该数据，在合适的生命周期中，对该数据进行处理，注意共享数据不需要在获取共享数据的data中再初始化
+
+
+11.1
+
+focus搜索框： 模糊搜索列表显示，最近搜索和流行搜索隐藏       blur时：模糊搜索列表隐藏，最近搜索和流行搜索显示
+
+触发事件focus和blur在header组件，  执行函数和执行函数时所需要的数据在searchCom组件，  header组件和searchCom组件拥有共同的父组件，如何实现？
+
+方法一：共享数据
+
+（1）在header组件中，定义focus和blur的函数，将focus和blur情况下改变的数据，提交到store中；
+
+（2）在searchCom下，从store中响应式获取改变的数据（在computes中获取响应式数据），从而通过该数据控制元素的显示隐藏
+
+
+方法二： 共享方法
+
+（1）在mutations中定义要执行的方法和数据
+
+（2）在header组件中，commit触发mutations，@focus（@blur）该mutations中的方法
+
+（3）在searchCom组件的computes中响应式获取变化的数据
+
+
+
+
+
 
 
 

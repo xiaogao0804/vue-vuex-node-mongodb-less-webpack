@@ -1,6 +1,6 @@
 <template>
     <el-container direction="vertical">
-        <el-row v-if="recentIsShow" v-show="recentShow" style="margin-bottom:1rem;">
+        <el-row v-if="recentIsShow" style="margin-bottom:1rem;">
             <el-row class="recentSearch" type="flex" justify="space-between">
                 <el-col :span='6' :offset="1">最近搜索</el-col>
                 <el-col :span='3'  @click.native="handleClose()">清空</el-col>
@@ -31,7 +31,7 @@
             <li 
                 v-for="item in menuItems"
                 :key="item.index">
-                {{item.name}}
+                    {{item.name}}
             </li>
         </ul>
     </el-container>
@@ -44,10 +44,9 @@
         name: 'Search',
         data(){
             return {
-                // recentIsShow: false,
-                // fashonIsShow: true,
-                // menuIsShow: false,
-                recentShow: false,
+                recentIsShow: false,
+                fashonIsShow: true,
+                menuIsShow: false,
                 tagsRecent: [
                     { name: '标签一', type: '' },
                     { name: '标签二', type: 'success' },
@@ -74,27 +73,32 @@
         created(){
             //最近搜索显示隐藏
             if (this.tagsRecent.length > 0){
-                //this.$store.state.searchHeader.isShow.recentIsShow = false
-                this.recentShow = true
+                this.recentIsShow = true
             }else{
-                //this.$store.state.searchHeader.isShow.recentIsShow = true
-                this.recentShow = false
+                this.recentIsShow = false
             }
         },
-        //获取聚焦或失去焦点时，isShow的变化
-        computed: mapState({
-           isShow: state => state.searchHeader.isShow,
-           recentIsShow: state => state.searchHeader.isShow.recentIsShow,
-           fashonIsShow: state => state.searchHeader.isShow.fashonIsShow,
-           menuIsShow: state => state.searchHeader.isShow.menuIsShow
-        }),
-
         methods:{
-            //清空A
+            //清空
             handleClose() {
-                //this.$store.state.searchHeader.isShow.recentIsShow = false
-                this.recentShow = false
-            }
+                this.recentIsShow = false
+            },
+            //focus搜索列表显示
+            focusSearch(){
+                console.log('聚焦')
+                this.menuIsShow = true
+                this.recentIsShow = false
+                this.fashonIsShow = false
+                 console.log('聚焦', this.recentIsShow,  this.fashonIsShow, this.menuIsShow)
+            },
+            //blur搜索列表隐藏
+            blurSearch(){
+                console.log('失去焦点')
+                this.menuIsShow = false
+                this.recentIsShow = true
+                this.fashonIsShow = true
+                console.log('失去焦点', this.recentIsShow,  this.fashonIsShow, this.menuIsShow)
+            },
         }
     }
 </script>

@@ -10,8 +10,7 @@
             </el-col>
             <el-col :span="iptSpan" class="ipt_wrap" :class="[ leftFa ? '' : 'ipt-left']">
                 <router-link tag="div" to="/search">
-                  <el-input class="seatch_ipt" prefix-icon="el-icon-search" v-model="seatchTxt" :placeholder="[ iptHolder ]" clearable >
-                  </el-input>
+                  <el-input class="seatch_ipt" prefix-icon="el-icon-search" v-model="seatchTxt" :placeholder="[ iptHolder ]" clearable @focus="focusSearch" @blur="blurSearch"></el-input>
                 </router-link>
             </el-col>
             <el-col :span="rightSpan">  
@@ -24,7 +23,11 @@
 </template>
 
 <script type=”text/javascript”>
-   export default {
+
+    import { mapActions } from 'vuex'
+    import {  mapMutations } from 'vuex'
+
+    export default {
        name: 'Header',
        props: [ 'leftFa', 'rightFa', 'iptHolder', 'isIcon', 'rightTxt', 'rightText', 'leftSpan', 'iptSpan', 'rightSpan', 'leftSpanSearch', 'leftFaSearch' ],
        data(){
@@ -32,11 +35,47 @@
                 seatchTxt: '',
            }
        },
+       created(){
+
+       },
        methods:{
-           //返回上一级页面
-           goBack(){
+             //返回上一级页面
+            goBack(){
                this.$router.go(-1)
-           }
+            },
+            //触发focus/blur时数据的变化
+            ...mapMutations({
+                isShow: 'ISSHOW'
+            }),
+            //focus搜索列表显示
+            focusSearch(){
+                console.log('聚焦')
+                this.menuIsShow = true
+                this.recentIsShow = false
+                this.fashonIsShow = false
+                let isShow = {
+                    menuIsShow: this.menuIsShow,
+                    recentIsShow: this.recentIsShow,
+                    fashonIsShow: this.fashonIsShow
+                }
+                this.isShow(isShow)    //负荷
+                // console.log('聚焦',   this.recentIsShow,  this.fashonIsShow, this.menuIsShow)
+            },
+            //blur搜索列表隐藏
+            blurSearch(){
+                console.log('失去焦点')
+                this.menuIsShow = false
+                this.recentIsShow = true
+                this.fashonIsShow = true
+                let isShow = {
+                    menuIsShow: this.menuIsShow,
+                    recentIsShow: this.recentIsShow,
+                    fashonIsShow: this.fashonIsShow
+                }
+                this.isShow(isShow)   //负荷
+                //console.log('失去焦点', this.recentIsShow,  this.fashonIsShow, this.menuIsShow)
+            },
+
        }
    }
     
