@@ -89,10 +89,10 @@
         }
         let fromPath = from.path
         let toPath = to.path
-        if ( toPath.indexOf('/search') > -1){    //搜索页面不显示footer
+        if ( toPath.indexOf('/search') > -1 || toPath.indexOf('/share') > -1){    //搜索页面，分享页面不显示footer
           this.footerIsShow = false
         }
-        if ( fromPath.indexOf('/search') > -1){      //非搜索页面显示footer
+        if ( fromPath.indexOf('/search') > -1 ||  fromPath.indexOf('/share') > -1){      //非搜索页面显示footer
           this.footerIsShow = true
         }
       }

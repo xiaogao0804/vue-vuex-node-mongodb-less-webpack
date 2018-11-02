@@ -3,7 +3,7 @@
         <el-header class="contain-header">
             <Header :leftFaSearch = 'leftFaSearch' :leftSpanSearch = "leftSpanSearch" :rightText = 'rightText' :iptHolder = 'iptHolder' :leftSpan = "leftSpan" :iptSpan = "iptSpan" :rightSpan = "rightSpan"></Header>
         </el-header>
-        <el-main> 
+        <el-main class="main-content"> 
             <SearchCom></SearchCom>
         </el-main>
     </el-container>
@@ -86,6 +86,9 @@
         z-index: 999;
         background: #fff;
         padding: 0;
+     }
+     .main-content{
+         margin-top:70px;
      }
     }
 </style>

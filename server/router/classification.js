@@ -1,7 +1,7 @@
 var express = require('express')
 var router = express.Router()
 var app = express();
-var Model = require('../models/schema.js')    //引入模型
+var Model = require('../models/schema.js').Model    //引入模型
 
 //路由设置并从数据库查找数据
 router.get('/classification', function(req, res, next){

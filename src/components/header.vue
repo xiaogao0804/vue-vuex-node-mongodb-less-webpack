@@ -5,10 +5,19 @@
                 <i class="fa" :class="leftFaSearch" @click="goBack"></i>
             </el-col>
             <el-col :span="leftSpan" v-if="leftFa">
-                <i class="fa" :class="[ isIcon == 1 ? 'left-fa-icon1' : 'left-fa-icon2', leftFa ]"></i>
-                <span class="geolocation" v-if = "isIcon == '2'">北京市</span>
+                <!-- 下厨房 -->
+                <router-link to="/share">
+                    <i class="fa left-fa-icon1" v-if = "isIcon == 1" :class=" leftFa "></i>
+                </router-link>
+                <!-- 市集 -->
+                <router-link to="">
+                    <i class="fa left-fa-icon2" v-if = "isIcon==2" :class="leftFa"></i>
+                    <span class="geolocation" v-if = "isIcon == '2'">北京市</span>
+                </router-link>
+                <!-- 分享 -->
+                 <i class="fa left-fa-icon2" v-if = "isIcon==7" :class="leftFa" @click="goBack"></i>
             </el-col>
-            <el-col :span="iptSpan" class="ipt_wrap" :class="[ leftFa ? '' : 'ipt-left']">
+            <el-col v-if = "isIcon != 7" :span="iptSpan" class="ipt_wrap" :class="[ leftFa ? '' : 'ipt-left']">
                 <router-link tag="div" to="/search">
                   <el-input class="seatch_ipt" prefix-icon="el-icon-search" v-model="seatchTxt" :placeholder="[ iptHolder ]" clearable @focus="focusSearch" @blur="blurSearch"></el-input>
                 </router-link>
@@ -33,10 +42,11 @@
        data(){
            return {
                 seatchTxt: '',
+                lestFa: this.$props.leftFa
            }
        },
        created(){
-
+           console.log('props', this.$props.leftFa)
        },
        methods:{
              //返回上一级页面

@@ -13,8 +13,16 @@ var Schema = mongoose.Schema
     imgTxt: { type: String }
 })
 
+//模糊查询表
+var blurListSchema = new Schema({
+    keyWord: { type: String},
+    blurWord: { type: Array }
+})
+
 var Model = mongoose.model('imgSchema', imgSchema);   //输出模型
+var blurListModel = mongoose.model('blurListSchema', blurListSchema)
 
-module.exports = Model
-
-
+module.exports = { 
+    Model,
+    blurListModel
+}

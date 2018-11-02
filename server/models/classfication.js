@@ -2,8 +2,8 @@
  * 插入表数据
  */
 var mongoose = require('mongoose');
-var imgSchema = require('./schema.js')    //引入表结构
-console.log('ddddd')
+var imgSchema = require('./schema.js').Model    //引入表结构
+
 
 //实例化模型
 var classification1 = new imgSchema({ 

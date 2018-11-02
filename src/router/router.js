@@ -7,6 +7,7 @@ const collection = r => require.ensure([], () => r(require('../views/collection/
 const mailbox = r => require.ensure([], () => r(require('../views/mailbox/mailbox.vue')), 'mailbox')
 const user = r => require.ensure([], () => r(require('../views/user/user.vue')), 'user')
 const search = r => require.ensure([], () => r(require('../views/search/search.vue')), 'search')
+const share = r => require.ensure([], () => r(require('../views/share/share.vue')), 'share')
 
 //定义二级路由
 const  recommend= r => require.ensure([], () => r(require('../views/index/items/recommend')), 'recommend')
@@ -138,5 +139,11 @@ export default [      //二级路由，对应app.vue
         {
             path: '/search',
             component: search
+        },
+        //分享页面
+        {
+            path: '/share',
+            component: share
         }
+
     ]

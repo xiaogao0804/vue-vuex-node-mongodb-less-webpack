@@ -13,8 +13,9 @@ app.use(bodyParser.json())
 app.use(express.static(__dirname + "/assets/"));
 
 var classificationRouter = require('./router/classification.js') //引入路由
+var uploadRouter = require('./router/upload.js')
 app.use('/',classificationRouter);                  //注册路由
-
+app.use('/',uploadRouter); 
 /**
  * 解决跨域问题
  */

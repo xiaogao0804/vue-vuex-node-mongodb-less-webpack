@@ -3,7 +3,7 @@
       <el-header class="contain-header">
         <Header :isIcon = 'isIcon' :leftFa = 'leftFa' :rightFa = 'rightFa' :iptHolder = 'iptHolder' :leftSpan = "leftSpan" :iptSpan = "iptSpan" :rightSpan = "rightSpan"></Header>
       </el-header>
-      <el-main>
+      <el-main class="main-content">
        <div class="index-main">
            <Tab></Tab>
            <keep-alive>    <!-- 缓存路由页面 -->
@@ -72,9 +72,9 @@
         background: #fff;
         padding: 0;
      }
-     .el-main{
+     .main-content{
        padding:0;
-       margin-top: 30px;
+       margin-top: 70px;
         .index-main{
            position:relative;
        }
