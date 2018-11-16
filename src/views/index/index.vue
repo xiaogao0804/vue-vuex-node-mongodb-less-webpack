@@ -55,6 +55,13 @@
         components: {
             Header,
             Tab
+        },
+        /**
+         * 组件被复用时调用（测试）
+         */
+        beforeRouteUpdate (to, from, next) {
+            console.log('组件内路由守卫，组件被复用时调用, 在切换推荐，烘焙等路由时，index组件被复用')
+            next()
         }
     }
 </script>
@@ -73,11 +80,11 @@
         padding: 0;
      }
      .main-content{
-       padding:0;
-       margin-top: 70px;
+        padding:0;
+        margin-top: 70px;
         .index-main{
            position:relative;
-       }
+        }
      }
    }
 </style>

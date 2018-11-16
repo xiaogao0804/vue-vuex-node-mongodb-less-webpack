@@ -8,7 +8,6 @@ var fs = require("fs")
 router.get('/', (ctx, next) => {
     let data = fs.readFileSync("./dist/index.html","utf-8",function(err,data){
         console.log(data)
-        
     })
     ctx.body = data;
 });

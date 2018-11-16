@@ -26,11 +26,13 @@ const  videorecieps= r => require.ensure([], () => r(require('../views/index/ite
 export default [      //二级路由，对应app.vue
         //地址为空时，跳转到index.vue
         {
+            name: '',
             path: '',
             redirect: '/index/items/recommend'
         },
         //首页下厨房页面
         {
+            name: 'index',
             path: '/index',
             component: index,
             redirect: '/index/items/recommend',
@@ -117,33 +119,43 @@ export default [      //二级路由，对应app.vue
         },
         //市集页面
         {
+            name: 'market',
             path: '/market',
             component: market
         },
         //收藏页面
         {
+            name: 'collection',
             path: '/collection',
             component: collection
         },
         //信箱页面
         {
+            name: 'mailbox',
             path: '/mailbox',
             component: mailbox
         },
         //我页面
         {
+            name: 'user',
             path: '/user',
             component: user
         },
         //搜索页面
         {
+            name: 'search',
             path: '/search',
             component: search
         },
         //分享页面
         {
+            name: 'share',
             path: '/share',
             component: share
-        }
+        },
+        {
+            path: '**',   // 错误路由
+            redirect: '/index'   //重定向
+        },
 
     ]

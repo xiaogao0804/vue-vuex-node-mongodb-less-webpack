@@ -30,17 +30,28 @@ const router = new VueRouter({
   routes
 })
 
+//全局路由守卫，任何跳转都会先执行这个（测试）
+router.beforeEach(function(to, from, next){
+  //console.log(this)      //vue实例未实例化，不能使用this
+  console.log('全局路由守卫')
+  console.log('路由名字', to.name)
+  next()                   //有next()，会继续执行，会渲染，没有next,视图没有被渲染, next(false)不会向下执行
+}),
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
+  data: {
+    msg: 'haha'
+  },
   router,                  //注入路由
   store,
   //template: '<App/>',     //vue1.0的写法
   //components: { App },    //vue1.0的写法
   render: h => h(App),        //vue2.0的写法 ==》function(createElement){ return createElement(App)}   //return createElement('h2','hello ll')
- created(){
+  created(){
     rem(document, window)
-  }
+  },
 })
 
 

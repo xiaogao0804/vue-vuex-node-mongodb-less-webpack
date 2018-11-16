@@ -4,8 +4,7 @@
         <Header></Header>
       </el-header>
       <el-main>
-        <div class="index-main"  @click="handle()">user.vue</div> 
-            
+        <div class="index-main"  @click="handle()">user.vue</div>            
       </el-main>
     </el-container>
 </template>
@@ -25,10 +24,10 @@
         },
         methods:{
             handle:function(){
-                  //this.$store.commit('CHANGE_TABNUM', 6)
-                  console.log('user',this.$store)
-                  this.$store.dispatch('changeTabnum', this.isIcon )
-                  console.log('store',this.$store.state.isIcon.isIcon)
+                //this.$store.commit('CHANGE_TABNUM', 6)
+                console.log('user',this.$store)
+                this.$store.dispatch('changeTabnum', this.isIcon )
+                console.log('store',this.$store.state.isIcon.isIcon)
             }
         },
         components: {

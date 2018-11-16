@@ -5,7 +5,7 @@
         <Header :leftFa = 'leftFa' :rightFa = 'rightFa' :iptHolder = 'iptHolder'></Header>
       </el-header>
       <el-main>
-        
+          
       </el-main>
     </el-container>
     </div>
