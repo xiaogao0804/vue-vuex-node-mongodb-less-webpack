@@ -1,6 +1,7 @@
 <template>
     <div class="header">
         <el-row  :gutter="0">
+            <!-- 搜索页面 -->
             <el-col :span="leftSpanSearch" v-if="leftFaSearch" class="searchFa">
                 <i class="fa" :class="leftFaSearch" @click="goBack"></i>
             </el-col>
@@ -15,9 +16,16 @@
                     <span class="geolocation" v-if = "isIcon == '2'">北京市</span>
                 </router-link>
                 <!-- 分享 -->
-                 <i class="fa left-fa-icon2" v-if = "isIcon==7" :class="leftFa" @click="goBack"></i>
+                <i class="fa left-fa-icon2" v-if = "isIcon==7" :class="leftFa" @click="goBack"></i> 
+                <!-- 菜谱详情 -->   
+                <div class="menu-detail" v-if="isIcon == 8">
+                    <i class="fa left-fa-icon2 fa-2x fa-back" :class="leftFa" @click="goBack"></i> 
+                    <i class="fa fa-wx" :class="leftFaTwo"></i>
+                    <i class="fa fa-fd" :class="leftFaThree"></i>
+                    <i class="fa fa-all">{{leftFaForth}}</i>
+                </div>           
             </el-col>
-            <el-col v-if = "isIcon != 7" :span="iptSpan" class="ipt_wrap" :class="[ leftFa ? '' : 'ipt-left']">
+            <el-col v-if = "isIcon != 7 && isIcon != 8" :span="iptSpan" class="ipt_wrap" :class="[ leftFa ? '' : 'ipt-left']">
                 <router-link tag="div" to="/search">
                   <el-input class="seatch_ipt" prefix-icon="el-icon-search" v-model="seatchTxt" :placeholder="[ iptHolder ]" clearable @focus="focusSearch" @blur="blurSearch"></el-input>
                 </router-link>
@@ -38,15 +46,14 @@
 
     export default {
        name: 'Header',
-       props: [ 'leftFa', 'rightFa', 'iptHolder', 'isIcon', 'rightTxt', 'rightText', 'leftSpan', 'iptSpan', 'rightSpan', 'leftSpanSearch', 'leftFaSearch' ],
+       props: [ 'leftFa', 'leftFaTwo', 'leftFaThree', 'leftFaForth', 'rightFa', 'iptHolder', 'isIcon', 'rightTxt', 'rightText', 'leftSpan', 'iptSpan', 'rightSpan', 'leftSpanSearch', 'leftFaSearch' ],
        data(){
            return {
-                seatchTxt: '',
-                lestFa: this.$props.leftFa
+                seatchTxt: ''
            }
        },
        created(){
-           console.log('props', this.$props.leftFa)
+           //console.log('isIcon', this.$props)
        },
        methods:{
              //返回上一级页面
@@ -138,6 +145,23 @@
             top:50%;
             right:10px;
             transform: translateY(-50%);
+        }
+    }
+    .menu-detail{
+        font-size: 0.32rem;
+        .fa-back{
+            margin-right: 0.2rem;
+        }
+        .fa-wx{
+            font-size: 0.38rem;
+            margin-right: 0.2rem;
+        }
+        .fa-fd{
+            font-size: 0.38rem;
+            margin-right: 0.2rem;
+        }
+        .fa-all{
+            font-size: 0.38rem;
         }
     }
 </style>

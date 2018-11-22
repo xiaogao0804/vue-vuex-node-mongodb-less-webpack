@@ -7,13 +7,13 @@
       <el-main>
           
       </el-main>
-    </el-container>
+     </el-container>
     </div>
 </template>
 
 <script type="text/javascript">
     import { mapMutations } from 'vuex'
-    import Header from '../../components/header'
+    import Header from '../../components/header' 
 
     export default {
         data(){
@@ -24,7 +24,7 @@
                 iptHolder: '搜索商品'
             }
         },
-        created(){
+        created(){  
             this.changeIsicon(this.isIcon)
         },
         mounted(){

@@ -22,6 +22,9 @@ const  staplefood= r => require.ensure([], () => r(require('../views/index/items
 const  vegetable= r => require.ensure([], () => r(require('../views/index/items/vegetable')), 'vegetable')
 const  videorecieps= r => require.ensure([], () => r(require('../views/index/items/videorecieps')), 'videorecieps')
 
+//定义三级页面
+const  menuDetail= r => require.ensure([], () => r(require('../views/index/items/menuDetail/menuDetail')), 'menuDetail')
+
 
 export default [      //二级路由，对应app.vue
         //地址为空时，跳转到index.vue
@@ -63,7 +66,13 @@ export default [      //二级路由，对应app.vue
                     component: homedishs,
                     meta: {
                         keepAlive: true   // 需要被缓存  
-                    }                   
+                    },
+                    // children: [
+                    //     {
+                    //         path: "/items/menuDetail",        //菜谱详情，此路由会在二级路由界面下显示
+                    //         component: menuDetail
+                    //     }   
+                    // ]                
                 },
                 {
                     path: "/index/items/meat",
@@ -153,9 +162,15 @@ export default [      //二级路由，对应app.vue
             path: '/share',
             component: share
         },
+        //菜谱详情
+        {
+            name: 'menuDetail',
+            path: "/items/menuDetail",         //path必须和router-link内的to路径对应
+            component: menuDetail
+        },  
         {
             path: '**',   // 错误路由
             redirect: '/index'   //重定向
         },
-
+ 
     ]

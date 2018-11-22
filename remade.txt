@@ -188,12 +188,83 @@ header组件：左边标志leftFa，每个标签分开写了
 如果公共组件中，某个元素标签上有好多操作，每个父组件的操作都不一样，这个元素可以根据父组件分开写
 
 
+11.20
+
+骨架屏生成dist:  webpack --config ./webpack.skeleton.conf.js
+
+生成骨架屏： node skeleton
+
+
+
+请求的数据的时候加上时间戳或者随机数，避免304错误
+
+status code = 304, 这是因为http请求的缓存问题引起的
+
+前后调用了两个相同的请求，服务器懒得给你重新发一个请求，所以就304咯
+
+ let date=new Date();   let timer=date.getTime().toString();
+
+ this.$http.get('http://10.4.110.19:3000/menuLists?' + timer)    //时间戳
+
+
+
+11.22
+
+1. router.js中 菜谱详情 menuDetail路由在三级子路由和在直接路由下边的不同，在三级潜逃路由时，头部header和二级导航，底部导航都存在， 在直接路由下，只有二级导航在； 根据需求，头部和二级导航不应存在
+
+2. path必须和router-link内的to路径对应，即：
+
+        {
+            path: "/items/menuDetail",         =====》		<router-link to="/items/menuDetail"></router-link>
+            component: menuDetail
+        },
+  
+
+
+3. 菜谱列表跳转到菜谱详情： 通过路由传参，获取参数，根据参数获取该菜谱的详情
+
+   vue路由传参有四种基本方式： https://segmentfault.com/a/1190000012393587         https://www.cnblogs.com/shuaifing/p/7911942.html
+
+   注意两种方式：
+
+ 	query: 类似于ajax中的get传参，参数会在路径上边显示
+
+	params: 类似于ajax中的post传参， 参数不会在路径上显示
+
+	
+query动态传参方式：
+
+  <router-link :to="{ name: 'menuDetail', query: { menuName: menuItem.menuName}}"> </router-link>
+
+  router.js中： 	不需要额外添加参数名称       
+		{
+            		name: 'menuDetail',
+            		path: "/items/menuDetail",         //path必须和router-link内的to路径对应
+            		component: menuDetail
+        	} 
+
+params动态传参方式：
+
+  <router-link :to="{ name: 'menuDetail', params: { menuName: menuItem.menuName}}"> </router-link>
+
+  router.js中： 	需要额外添加参数名称       
+		{
+            		name: 'menuDetail',
+            		path: "/items/menuDetail/:menuName",        
+            		component: menuDetail
+        	} 
 
 
 
 
+4. 获取服务端数据请求应放在哪个生命周期？  答：放在created中，如果有dom操作，就放在mounted中，因为模板刚读取完毕
 
 
+5.Error in nextTick: "RangeError: Maximum call stack size exceeded"
+
+父组件menuDetail 不可以 与子组件 MenuDetail重名， 防止栈溢出， 出现上述错误， 把子组件名字改为MenuDetailCom即可
+
+自认为原理： 由于父组件与子组件重名，子组件发生变化，父组件就编译，这样重复循环，递归运算导致栈溢出
 
 
 

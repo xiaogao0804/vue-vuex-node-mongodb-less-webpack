@@ -26,12 +26,8 @@
 </template>
 
 <script  type=”text/javascript”>
-import Vue from 'vue'
 import Broadcast from '../../../components/index/broadcast'
 import Classification from '../../../components/index/classification'
-import axios from  'axios'
-
-Vue.prototype.$http = axios
 
 export default {
     name: 'Recommend',
@@ -60,8 +56,10 @@ export default {
      * 获取各楼层数据
      */
     mounted(){
+        let date=new Date();
+        let timer=date.getTime().toString();
         this.$nextTick( () => {                  //$nextTick  数据变化之后Dom更新完了执行里面的回调函数
-            this.$http.get('http://10.4.110.19:3000/classification').then((res) => {
+            this.$http.get('http://10.4.110.19:3000/classification?' + timer).then((res) => {
                 if( res.status == 200 ){
                     //console.log('获取到的数据', res.data)
                     this.classification = res.data.classification

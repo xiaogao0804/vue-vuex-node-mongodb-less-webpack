@@ -69,7 +69,7 @@
 <style lang="less">
    .el-container{
      width: 100%;
-     height: 100%;
+     height: 100%;  
      .el-header{
         width: 100%;
         position: fixed;

@@ -19,7 +19,7 @@
         data(){
             return {
                 isIcon: '2',
-                leftFa: 'fa-stop-circle-o',
+                leftFa: 'fa-stop-circle-o', 
                 rightFa: 'fa-cart-plus',
                 iptHolder: '搜索商品'
             }

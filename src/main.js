@@ -8,6 +8,9 @@ import ElementUI from 'element-ui'
 import './styles/base.css'
 import 'font-awesome/css/font-awesome.min.css'
 import 'element-ui/lib/theme-chalk/index.css'
+import axios from  'axios'
+
+Vue.prototype.$http = axios
 
 Vue.config.productionTip = false
 Vue.use(ElementUI)

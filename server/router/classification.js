@@ -7,15 +7,17 @@ var Model = require('../models/schema.js').Model    //引入模型
 router.get('/classification', function(req, res, next){
     console.log('我接受到了get请求');
     //查找
-    Model.find(function(err, classification){           //model可以操作数据库，所以是Model  contactList是返回的所有文档
-        //console.log("数据库",classification)
-        var classification = classification
-        var obj = {
-            code: 200,
-            classification: classification,
-            message: "获取数据成功！"
-        }
-        res.json(obj)
-    })
+    if( res.statusCode == 200 ){
+        Model.find(function(err, classification){           //model可以操作数据库，所以是Model  contactList是返回的所有文档
+            //console.log("数据库",classification)
+            var classification = classification
+            var obj = {
+                code: 200,
+                classification: classification,
+                message: "获取数据成功！"
+            }
+            res.json(obj)
+        })
+    }
 })
 module.exports = router

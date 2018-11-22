@@ -14,8 +14,12 @@ app.use(express.static(__dirname + "/assets/"));
 
 var classificationRouter = require('./router/classification.js') //引入路由
 var uploadRouter = require('./router/upload.js')
+var menuListsRouter = require('./router/menuListsRouter.js')
+var menuDetailRouter = require('./router/menuDetailRouter.js')
 app.use('/',classificationRouter);                  //注册路由
 app.use('/',uploadRouter); 
+app.use('/',menuListsRouter); 
+app.use('/',menuDetailRouter); 
 /**
  * 解决跨域问题
  */

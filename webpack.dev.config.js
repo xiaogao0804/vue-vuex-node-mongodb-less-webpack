@@ -15,7 +15,7 @@ module.exports = merge(common, {
     devServer: {
         contentBase: path.join(__dirname, "/"),
         publicPath:'/',
-        port: 8080,
+        port: 8088,
         host: '10.4.110.19',
         open: true,           
         index: 'index.html',
