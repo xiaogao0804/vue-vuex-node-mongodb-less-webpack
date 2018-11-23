@@ -32,7 +32,7 @@
             </el-col>
             <el-col :span="rightSpan">  
                 <span class="rightText" v-if= "rightText" @click="goBack">{{rightText}}</span>
-                <i class="fa right-fa" :class="[ rightFa ]" v-if= "rightFa"></i>
+                <i class="fa right-fa" :class="[ rightFa ]" :style=" isIcon == 8 ? 'color: #fff; opacity: 0.9;' : ''" v-if= "rightFa"></i>
                 <span class="rightTxt" v-if= "rightTxt">{{rightTxt}}</span>
             </el-col>
         </el-row>
@@ -162,6 +162,14 @@
         }
         .fa-all{
             font-size: 0.38rem;
+        }
+        .fa-white{
+            color: #fff;
+            opacity: 0.9;
+        }
+        .fa-black{
+            color: #000;
+            opacity: 0.9;
         }
     }
 </style>

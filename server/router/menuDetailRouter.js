@@ -12,6 +12,7 @@ router.get('/menuDetail', function(req, res, next){
         menuDetailModel.find(function(err, menuDetail){           //model可以操作数据库，所以是Model  contactList是返回的所有文档
             //console.log("数据库",menuListsModel)
             var menuDetail = menuDetail
+            //console.log('menuDetail', menuDetail)
             var obj = {
                 code: 200,
                 menuDetail: menuDetail,

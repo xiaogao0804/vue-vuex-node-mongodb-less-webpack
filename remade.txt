@@ -267,6 +267,8 @@ params动态传参方式：
 自认为原理： 由于父组件与子组件重名，子组件发生变化，父组件就编译，这样重复循环，递归运算导致栈溢出
 
 
+11.23
 
+1.  window.addEventListener('scroll', this.handleScroll, true)      //监听滚动事件，加上第三个参数true，否则监听scroll事件失效
 
 
